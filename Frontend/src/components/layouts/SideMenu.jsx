@@ -98,7 +98,7 @@ const SideMenu = ({ activeMenu, aiOpen, setAiOpen, messages, setMessages }) => {
 
   return (
     <div
-      className={`fixed top-15.25 left-0 h-[calc(100vh-61px)] bg-[#0e192a] border-r border-slate-800 p-4 transition-all duration-300 flex flex-col ${
+      className={`fixed top-15.25 left-0 h-[calc(100vh-61px)] overflow-y-auto bg-[#0e192a] border-r border-slate-800 p-4 transition-all duration-300 flex flex-col ${
         aiOpen ? "w-100" : "w-64"
       }`}
     >
@@ -141,7 +141,7 @@ const SideMenu = ({ activeMenu, aiOpen, setAiOpen, messages, setMessages }) => {
 
       {/* AI CHAT */}
       {aiOpen && (
-        <div className="mt-4 border-t border-slate-800 pt-4 flex flex-col h-[650px] overflow-y-auto">
+        <div className="mt-4 border-t border-slate-800 pt-4 flex flex-col h-[700px]">
           {/* Header */}
           <div className="flex items-center justify-between mb-3">
             <div>
