@@ -141,7 +141,7 @@ const SideMenu = ({ activeMenu, aiOpen, setAiOpen, messages, setMessages }) => {
 
       {/* AI CHAT */}
       {aiOpen && (
-        <div className="mt-4 border-t border-slate-800 pt-4 flex flex-col flex-1 min-h-0">
+        <div className="mt-4 border-t border-slate-800 pt-4 flex flex-col h-[650px] overflow-y-auto">
           {/* Header */}
           <div className="flex items-center justify-between mb-3">
             <div>
