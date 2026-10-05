@@ -10,7 +10,7 @@ import IncomeList from "../../components/Income/IncomeList";
 import DeleteAlert from "../../components/DeleteAlert";
 import { useUserAuth } from "../../hooks/useUserAuth";
 
-const Income = () => {
+const Income = ({ aiOpen, setAiOpen, messages, setMessages }) => {
   useUserAuth();
 
   const [incomeData, setIncomeData] = useState([]);
@@ -33,7 +33,7 @@ const Income = () => {
   useEffect(() => {
     fetchIncomeDetails();
   }, []);
-  
+
   //Handle add Income
   const handleAddIncome = async (income) => {
     const { source, amount, date, icon } = income;
@@ -79,14 +79,16 @@ const Income = () => {
   //Delete Income
   const deleteIncome = async (id) => {
     try {
-      await axiosInstance.delete(API_PATHS.INCOME.DELETE_INCOME(id))
+      await axiosInstance.delete(API_PATHS.INCOME.DELETE_INCOME(id));
 
-      setOpenDeleteAlert({show: false, data: null})
-      toast.success('Income details deleted successfully')
-      fetchIncomeDetails()
+      setOpenDeleteAlert({ show: false, data: null });
+      toast.success("Income details deleted successfully");
+      fetchIncomeDetails();
     } catch (error) {
-      console.error("Error deleting income: ", error.response?.data?.message || error.message);
-      
+      console.error(
+        "Error deleting income: ",
+        error.response?.data?.message || error.message,
+      );
     }
   };
 
@@ -94,7 +96,13 @@ const Income = () => {
   const handleDownloadIncomeDetails = async () => {};
 
   return (
-    <DashboardLayout activeMenu="Income">
+    <DashboardLayout
+      activeMenu="Income"
+      aiOpen={aiOpen}
+      setAiOpen={setAiOpen}
+      messages={messages}
+      setMessages={setMessages}
+    >
       <div className="my-5 mx-auto">
         <div className="grid grid-cols-1 gap-6">
           <div>
@@ -104,10 +112,10 @@ const Income = () => {
             />
           </div>
 
-          <IncomeList 
+          <IncomeList
             transactions={incomeData}
-            onDelete={(id)=>{
-              setOpenDeleteAlert({show: true, data: id})
+            onDelete={(id) => {
+              setOpenDeleteAlert({ show: true, data: id });
             }}
             onDownload={handleDownloadIncomeDetails}
           />
@@ -123,16 +131,17 @@ const Income = () => {
           <AddIncomeForm onAddIncome={handleAddIncome} />
         </Modal>
 
-        <Modal 
+        <Modal
           isOpen={openDeleteAlert.show}
-          onClose={()=>{setOpenDeleteAlert({show: false, data: null})}}
-          title='Delete Income'
+          onClose={() => {
+            setOpenDeleteAlert({ show: false, data: null });
+          }}
+          title="Delete Income"
         >
-
-        <DeleteAlert 
-          content='Are you sure you want to delete this income detail?'
-          onDelete={()=>deleteIncome(openDeleteAlert.data)}
-        />
+          <DeleteAlert
+            content="Are you sure you want to delete this income detail?"
+            onDelete={() => deleteIncome(openDeleteAlert.data)}
+          />
         </Modal>
       </div>
     </DashboardLayout>

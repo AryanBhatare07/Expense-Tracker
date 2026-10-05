@@ -12,7 +12,7 @@ import Modal from "../../components/Modal";
 import AddExpenseForm from "../../components/Expense/AddExpenseForm.jsx";
 import ExpenseList from "../../components/Expense/ExpenseList.jsx";
 
-const Expense = () => {
+const Expense = ({ aiOpen, setAiOpen, messages, setMessages }) => {
   useUserAuth();
 
   const [expenseData, setExpenseData] = useState([]);
@@ -82,14 +82,16 @@ const Expense = () => {
   const deleteExpense = async (id) => {
     console.log("DELETING EXPENSE ID:", id);
     try {
-      await axiosInstance.delete(API_PATHS.EXPENSE.DELETE_EXPENSE(id))
+      await axiosInstance.delete(API_PATHS.EXPENSE.DELETE_EXPENSE(id));
 
-      setOpenDeleteAlert({show: false, data: null})
-      toast.success('Expense details deleted successfully')
-      fetchExpenseDetails()
+      setOpenDeleteAlert({ show: false, data: null });
+      toast.success("Expense details deleted successfully");
+      fetchExpenseDetails();
     } catch (error) {
-      console.error("Error deleting Expense: ", error.response?.data?.message || error.message);
-      
+      console.error(
+        "Error deleting Expense: ",
+        error.response?.data?.message || error.message,
+      );
     }
   };
 
@@ -101,7 +103,13 @@ const Expense = () => {
   }, []);
 
   return (
-    <DashboardLayout activeMenu="Expense">
+    <DashboardLayout
+      activeMenu="Expense"
+      aiOpen={aiOpen}
+      setAiOpen={setAiOpen}
+      messages={messages}
+      setMessages={setMessages}
+    >
       <div className="my-5 mx-auto">
         <div className="grid grid-cols-1 gap-6">
           <div>
