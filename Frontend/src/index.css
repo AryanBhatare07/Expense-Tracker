@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Poppins", "sans-serif";
+  --breakpoint-3xl: 1920px;
+  --color-primary: #875cf5;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-display);
+    background-color: #08111f;
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar {
+    display: none;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    background-color: #08111f;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  #root {
+    min-height: 100vh;
+    background-color: #08111f;
+    overflow: hidden;
+  }
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter {
+  animation: pageEnter 0.5s ease-out;
+}
+
+.card {
+  @apply bg-[#0e192a] p-6 rounded-2xl shadow-md shadow-black/20 border border-slate-800;
+}
+
+.card-btn {
+  @apply flex items-center gap-4 text-[13px] font-semibold
+  text-indigo-300 hover:text-white
+  bg-indigo-500/15 hover:bg-indigo-500/25
+  px-5 py-2.5 rounded-xl
+  border border-indigo-500/30 hover:border-indigo-400/60
+  cursor-pointer transition;
+}
+
+.add-btn {
+  @apply flex items-center gap-2
+  text-xs md:text-sm font-semibold
+  text-indigo-300 hover:text-white
+  whitespace-nowrap
+  bg-indigo-500/10 hover:bg-indigo-500/20
+  border border-indigo-500/30 hover:border-indigo-400/60
+  rounded-lg px-4 py-2.5
+  cursor-pointer
+  transition-all duration-200;
+}
+
+.add-btn-fill {
+  @apply text-white
+  bg-indigo-600 hover:bg-indigo-500
+  border-indigo-500;
+}
+
+.recharts-sector:focus {
+  outline: none;
+}
+
+.recharts-wrapper:focus {
+  outline: none;
+}
+
+.recharts-surface:focus {
+  outline: none;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-card {
+  animation: fadeUp 0.5s ease-out;
+}
