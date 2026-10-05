@@ -100,8 +100,8 @@ const SideMenu = ({ activeMenu, aiOpen, setAiOpen,messages,
 
   return (
     <div
-      className={`fixed top-[61px] left-0 h-[calc(100vh-61px)] bg-[#0e192a] border-r border-slate-800 p-4 transition-all duration-300 flex flex-col ${
-        aiOpen ? "w-[400px]" : "w-64"
+      className={`fixed top-15.25 left-0 h-[calc(100vh-61px)] bg-[#0e192a] border-r border-slate-800 p-4 transition-all duration-300 flex flex-col ${
+        aiOpen ? "w-100" : "w-64"
       }`}
     >
       {/* USER INFO */}
