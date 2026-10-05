@@ -6,22 +6,20 @@ import { IoSend } from "react-icons/io5";
 import axiosInstance from "../../utils/axiosInstance";
 import ReactMarkdown from "react-markdown";
 
-const SideMenu = ({ activeMenu, aiOpen, setAiOpen,messages,
-  setMessages, }) => {
+const SideMenu = ({ activeMenu, aiOpen, setAiOpen, messages, setMessages }) => {
   const { user, clearUser } = useContext(UserContext);
   const navigate = useNavigate();
 
-  
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
   const quickQuestions = [
-  "Total income?",
-  "Biggest expense?",
-  "Total savings?",
-  "Saving tip?",
-];
+    "Total income?",
+    "Biggest expense?",
+    "Total savings?",
+    "Saving tip?",
+  ];
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({
@@ -163,25 +161,25 @@ const SideMenu = ({ activeMenu, aiOpen, setAiOpen,messages,
           </div>
 
           {/* Messages */}
-          <div className="mb-3">
-            <p className="text-xs text-slate-500 mb-2">Suggested questions</p>
+          <div className="mb-2">
+            <p className="text-xs text-slate-500 mb-1">Suggested questions</p>
 
-            <div className="grid grid-cols-2 gap-2">
+            <div className="flex flex-wrap gap-1.5">
               {quickQuestions.map((question, index) => (
                 <button
                   key={index}
                   onClick={() => setMessage(question)}
-                  className="text-left text-xs px-3 py-2 rounded-lg
-                   bg-[#172235] text-slate-300
-                   hover:bg-indigo-600 hover:text-white
-                   transition"
+                  className="text-xs px-2.5 py-1 rounded-full
+ bg-[#172235] text-slate-300
+ hover:bg-indigo-600 hover:text-white
+ transition"
                 >
                   {question}
                 </button>
               ))}
             </div>
           </div>
-          <div className="flex-1 min-h-0 overflow-y-auto space-y-3 pr-1 custom-scrollbar">
+          <div className="flex-1 min-h-0 overflow-y-auto space-y-3 pr-1 custom-scrollbar pb-2">
             {messages.map((msg, index) => (
               <div
                 key={index}
@@ -211,7 +209,7 @@ const SideMenu = ({ activeMenu, aiOpen, setAiOpen,messages,
           </div>
 
           {/* Input */}
-          <div className="mt-3 flex gap-2">
+          <div className="mt-2 flex gap-2">
             <input
               type="text"
               value={message}
