@@ -24,7 +24,11 @@ const DashboardLayout = ({
       <div className="pt-[61px] flex">
         {/* SIDEBAR */}
 
-        <div className="hidden min-[1081px]:block shrink-0">
+        <div
+          className={`hidden min-[1081px]:block shrink-0 transition-all duration-300 ${
+            aiOpen ? "w-100" : "w-64"
+          }`}
+        >
           <SideMenu
             activeMenu={activeMenu}
             aiOpen={aiOpen}
